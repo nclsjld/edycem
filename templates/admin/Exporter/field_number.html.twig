@@ -1,0 +1,6 @@
+{# a *-to-many collection of values #}
+{% if value is iterable %}
+    {{ value|length }}
+{% else %}
+    {{ value }}
+{% endif %}

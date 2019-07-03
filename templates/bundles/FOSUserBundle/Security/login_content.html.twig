@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block wrapper %}
+{% endblock %}
+
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+
+            <div class="form-group has-feedback">
+                <input type="text" placeholder="{{ 'security.login.username'|trans }}" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username"/>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="{{ 'security.login.password'|trans }}" class="form-control" id="password" name="_password" required="required" autocomplete="current-password" />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block btn-flat" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </div>
+
+        </form>
+
+        <a href="{{path('fos_user_resetting_request')}}">{{ 'admin.login.lost.password'|trans({}, 'messages') }}</a><br>
+        <a href="{{path('fos_user_registration_register')}}" class="text-center">{{ 'admin.login.register'|trans({}, 'messages') }}</a>
+
+    </div>
+    <!-- /.login-box-body -->
+</div>

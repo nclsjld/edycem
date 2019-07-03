@@ -1,0 +1,44 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block content_title %}
+    {{'admin.dashboard.title'|trans}}
+{% endblock content_title %}
+
+{% block main %}
+
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <!-- /.form-row-->
+            <div class="form-row dashboard">
+                {% if views is defined %}
+                    {% for key, card in views %}
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="form-row justify-content-between">
+                                        <div class="col-xs-3"><i class="fa fa-{{ card.icon }} fa-5x"></i></div>
+                                        <div class="col-xs-3 text-right">
+                                            <div class="number">{{ card.number }}</div>
+                                            <div>{{ ('menu.choice.'~card.name)|transchoice(card.number) }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ path('easyadmin', { entity: key, action: 'list', menuIndex: card.menuIndex, submenuIndex: card.submenuIndex }) }}">
+                                    <div class="card-footer">
+                                        <span class="pull-left">{{ 'menu.details'|trans() }}</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-3">
+                        Aucune information à afficher
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

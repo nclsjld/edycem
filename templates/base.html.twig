@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        {% block head %}
+
+            <title>{% block title %}Edycem{% endblock %}</title>
+
+            <meta name="description" content="Edycem"/>
+
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        {% endblock %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('front') }}
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body>
+        {% block header %}
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <ul class="menu">
+                        <li>
+                            <a href="{{ path('homepage') }}">
+                                {% if is_home is defined and is_home %}
+                                    <h1 class="logo"><img src="{{ asset('static/images/logo.jpg') }}" alt="{{ app_title }}"/></h1>
+                                {% else %}
+                                    <div class="logo"><img src="{{ asset('static/images/logo.jpg') }}" alt="{{ app_title }}"/></div>
+                                {% endif %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">{{ 'menu.link.logout'|trans }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">{{ 'menu.link.register'|trans }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'menu.link.login'|trans }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        {% endblock %}
+
+        <div class="grid-container">
+
+            {% if app.session is not null and app.session.started %}
+                <div id="flash-messages">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }} alert-dismissible show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <b>{{ message }}</b>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block body %}{% endblock %}
+        </div>
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('front') }}
+        {% endblock %}
+
+        {% block footer %}
+            <footer>
+                <a href="{{ path('admin_dashboard') }}">{{ 'footer.link.admin'|trans }}</a>
+            </footer>
+        {% endblock %}
+    </body>
+</html>

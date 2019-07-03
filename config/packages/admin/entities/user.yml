@@ -1,0 +1,57 @@
+easy_admin:
+    entities:
+
+        User:
+            label: entity.user.label
+            class: App\Entity\User
+            role: ROLE_ADMIN
+            list:
+                title: entity.user.list
+                dql_filter: "entity.roles NOT LIKE '%%ROLE_ADMIN%%' AND entity.roles NOT LIKE '%%ROLE_SUPER_ADMIN%%'"
+                fields:
+                    - { property: username, label: entity.user.username }
+                    - { property: email, label: entity.user.email }
+                    - { property: enabled, label: entity.user.enabled }
+            form:
+                fields:
+                    - { property: username, label: entity.user.username }
+                    - { property: plainPassword, label: entity.user.plainPassword, type: 'text', type_options: { required: true } }
+                    - { property: email, label: entity.user.email }
+                    - { property: enabled, label: entity.user.enabled }
+            edit:
+                fields:
+                - '-plainPassword'
+
+        Admin:
+            label: entity.admin.label
+            class: App\Entity\User
+            role: ROLE_SUPER_ADMIN
+            list:
+                title: entity.admin.list
+                dql_filter: "entity.roles LIKE '%%ROLE_ADMIN%%' OR entity.roles LIKE '%%ROLE_SUPER_ADMIN%%'"
+                fields:
+                    - { property: username, label: entity.user.username }
+                    - { property: email, label: entity.user.email }
+                    - { property: enabled, label: entity.user.enabled }
+                    - { property: lastLogin, label: entity.user.lastlogin, type: 'date' }
+            form:
+                fields:
+                    - { property: username, label: entity.user.username }
+                    - { property: plainPassword, label: entity.user.plainPassword, type: 'text', type_options: { required: true } }
+                    - { property: email, label: entity.user.email }
+                    - { property: enabled, label: entity.user.enabled }
+
+                    # if administrators are allowed to edit users' passwords and roles, add this:
+                    #- { property: 'plainPassword', type: 'text', type_options: { required: false } }
+
+                    # Attention : en ouvrant la possibilité de modifier les rôles il faut aussi contrôler qu'un utilisateur ne puisse pas changer son propre rôle et celui des utilisateurs de rôles supérieurs
+                    - { property: 'roles', label: entity.user.roles, type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN': 'ROLE_SUPER_ADMIN' } } }
+            edit:
+              fields:
+              - '-plainPassword'
+            export:
+                fields:
+                    - { property: username, label: entity.user.username }
+                    - { property: email, label: entity.user.email }
+                    - { property: enabled, label: entity.user.enabled }
+                    - { property: task, label: 'Tâche' }

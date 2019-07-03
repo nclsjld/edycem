@@ -1,0 +1,28 @@
+{% extends '@!EasyAdmin/default/show.html.twig' %}
+
+{% block item_actions %}
+
+    {% set _show_actions = easyadmin_get_actions_for_show_item(_entity_config.name) %}
+    {% set _request_parameters = { entity: _entity_config.name, referer: app.request.query.get('referer') } %}
+
+    {% set currentEntity = _entity_config.name %}
+    {% set currentEntityConfig = easyadmin_config('entities.' ~ currentEntity) %}
+    {% set allowedActions = [] %}
+
+    {% for action in _show_actions %}
+        {% set actionName = action.name %}
+
+        {# config for the current action of the current entity in yml and custom role and not allowed#}
+        {% if currentEntityConfig[actionName] is defined and currentEntityConfig[actionName].role is defined and not is_granted(currentEntityConfig[actionName].role) %}
+            {# Action not allowed #}
+        {% else %}
+            {% set allowedActions = allowedActions|merge({(''~actionName): _show_actions[actionName]}) %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% set _show_actions = allowedActions %}
+
+    {{ parent() }}
+
+{% endblock item_actions %}

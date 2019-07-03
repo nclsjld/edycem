@@ -1,0 +1,87 @@
+# Global
+entity:
+  content: 'Contenu'
+  user:
+    title: 'Utilisateurs'
+    label: 'un utilisateur'
+    list: 'Utilisateurs'
+
+    username: 'Nom d''utilisateur'
+    email: 'Email'
+    enabled: 'Activé'
+    lastlogin: 'Dernière connexion'
+    roles: 'Rôles'
+    plainPassword: 'Password'
+
+  admin:
+    title: 'Admins'
+    label: 'un administrateur'
+    list: 'Administrateurs'
+
+title:
+  add: 'Ajouter %entity_label%'
+  edit: 'Editer %entity_label%'
+
+# Admin
+admin:
+  login:
+    lost:
+      password: 'Mot de passe oublié ?'
+    register: 'S''enregister'
+
+  dashboard:
+    title: 'Bienvenue sur votre tableau de bord'
+
+  profile:
+    edit:
+      title: 'Modifier mon profil'
+
+  link:
+    profile:
+      edit: 'Mon profil'
+    site: 'Voir le site'
+
+exporter:
+  export: 'Exporter'
+
+# Front
+menu:
+  details: 'Voir les détails'
+  link:
+    register: 'S''enregistrer'
+    login: 'Login'
+    logout: 'Déconnexion'
+  choice:
+    posts: 'Post|Posts'
+    users: 'Utilisateur|Utilisateurs'
+
+footer:
+  link:
+    admin: 'Admin'
+
+# Emails
+email:
+  header:
+    title: 'Edycem'
+  footer:
+    text: '&copy; Tous droits réservés'
+  registration:
+    message: '|
+            Bonjour %username% !<br/>
+            <br/>
+            Pour valider votre compte utilisateur, merci de vous rendre à <a href="%confirmationUrl%">cette adresse</a>.<br/>
+            <br/>
+            Ce lien ne peut être utilisé qu''une seule fois pour valider votre compte.<br/>'
+  reset:
+    message: '|
+            Bonjour %username% !<br/>
+            <br/>
+            Pour réinitialiser votre mot de passe, merci de vous rendre  à <a href="%confirmationUrl%">cette adresse</a>.<br/>'
+
+# Errors'
+error:
+  title: 'Erreur'
+  content: 'Une erreur est survenue'
+  404:
+    title: 'Page non trouvée'
+    content: 'La page demandée n''a pas pu être trouvée'

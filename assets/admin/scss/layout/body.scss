@@ -1,0 +1,112 @@
+#fos_login{
+  .main-sidebar{
+    width:0;
+    padding-top:0;
+  }
+  .content-wrapper{
+    margin-left:0;
+  }
+  .wrapper{
+    background:$background;
+  }
+}
+
+/* Color */
+.btn-main-color, .btn-main-color:hover, .btn-main-color:active, .btn-main-color:hover:active, .btn-main-color:focus{
+  color: white;
+  background: $mainColor;
+}
+
+/* Login */
+.login-logo, .register-logo {
+  font-size: 35px;
+  margin: 0 auto;
+  a {
+    font-weight: 700;
+    color: black;
+  }
+}
+
+@media (max-width:768px){
+  .login-box,.register-box{
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+
+.login-box-body, .register-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.login-box-body .form-group label {
+  flex: initial;
+}
+
+.content-body form {
+  background: white;
+}
+
+/* Dashboard */
+#page-wrapper {
+  padding: 30px;
+
+  .number {
+    font-size: 40px;
+  }
+
+  .dashboard {
+
+    .card {
+      color: white;
+      margin: 0 10px 20px 0;
+    }
+
+    .card-footer {
+      padding: 10px 15px;
+      background-color: #f5f5f5;
+      border-top: 1px solid #ddd;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    & > div:nth-child(odd) > div {
+      background-color: $oddDashboard;
+      box-shadow: 0 0 0 6px rgba(0,0,0,.03);
+
+      .card-heading {
+        border-color: $oddDashboard;
+        color: $background;
+        background-color: $oddDashboard;
+      }
+
+      a {
+        color: $oddDashboard;
+        &:hover{
+          color: darken($oddDashboard, 5%);
+        }
+      }
+    }
+
+    & > div:nth-child(even) > div {
+      background-color: $evenDashboard;
+      box-shadow: 0 0 0 6px rgba(0,0,0,.03);
+
+      .card-heading {
+        border-color: $evenDashboard;
+        color: $background;
+        background-color: $evenDashboard;
+      }
+
+      a {
+        color: $evenDashboard;
+        &:hover {
+          color: darken($evenDashboard, 5%);
+        }
+      }
+    }
+  }
+}
+/* End dashboard */

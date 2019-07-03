@@ -1,0 +1,19 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Dashboard'
+              role: ROLE_USER
+              icon: 'dashboard'
+              route: admin_dashboard
+              default: true
+
+            - label: 'Utilisateurs'
+              role: ROLE_ADMIN
+              icon: 'users'
+              children:
+                  - label: entity.user.title
+                    entity: 'User'
+                    icon: 'user'
+                  - label: entity.admin.title
+                    entity: 'Admin'
+                    icon: 'user-circle-o'

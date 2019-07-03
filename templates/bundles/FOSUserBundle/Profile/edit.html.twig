@@ -1,0 +1,11 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content_title %}
+{{'admin.profile.edit.title'|trans}}
+{% endblock content_title %}
+
+{% block fos_user_content %}
+{% include "@FOSUser/Profile/edit_content.html.twig" %}
+{% endblock fos_user_content %}

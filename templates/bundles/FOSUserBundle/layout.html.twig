@@ -1,0 +1,84 @@
+{% extends "@EasyAdmin/default/layout.html.twig" %}
+
+{% block page_title %}{{ app_title }}{% endblock %}
+
+{% block body %}
+    <body id="{% block body_id %}{% endblock %}" class="easyadmin {% block body_class %}fos_user_bundle{% endblock %}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                {% block wrapper %}
+                    <div class="content-wrapper">
+                        {% set _logout_path = easyadmin_logout_path() %}
+                        {% set _user_has_logout = _logout_path is not empty %}
+                        {% set _user_is_impersonated = is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        {% set _user_menu_content %}
+                            <div class="popover-content-section user-details {{ _user_has_logout or _user_is_impersonated ? 'user-has-actions' }}">
+                                <p class="small text-muted mb-0">{{ 'user.logged_in_as'|trans(domain = 'EasyAdminBundle') }}</p>
+                                <p class="user-name">
+                                    {% if app.user|default(false) == false %}
+                                        {{ 'user.anonymous'|trans(domain = 'EasyAdminBundle') }}
+                                    {% else %}
+                                        {{ app.user.username|default('user.unnamed'|trans(domain = 'EasyAdminBundle')) }}
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            {% block user_menu %}
+                                {{ parent() }}
+                            {% endblock user_menu %}
+                        {% endset %}
+
+                        {% block flash_messages %}
+                            {{ parent() }}
+                        {% endblock flash_messages %}
+
+                        {% block content %}
+                            <div class="content">
+                                {% if block('content_header')|trim is not empty %}
+                                    {% set _has_content_help = _entity_config is defined and _entity_config[app.request.query.get('action')]['help']|default(false) %}
+                                    <section class="content-header {{ _has_content_help ? 'has-content-help' }}">
+                                        {% block login_logo %}
+                                        {% endblock %}
+                                    </section>
+                                {% endif %}
+
+                                <section id="main" class="content-body">
+                                    {% block fos_user_content %}
+                                    {% endblock fos_user_content %}
+                                </section>
+
+                                {% if block('content_footer')|trim is not empty %}
+                                    <section class="content-footer">
+                                        {% block content_footer %}{% endblock %}
+                                    </section>
+                                {% endif %}
+                            </div>
+                        {% endblock content %}
+                    </div>
+                {% endblock wrapper %}
+            </div>
+        </div>
+    </div>
+
+    {% block body_javascript %}{% endblock body_javascript %}
+
+    {% for js_asset in easyadmin_config('design.assets.js') %}
+        <script src="{{ asset(js_asset) }}"></script>
+    {% endfor %}
+    </body>
+{% endblock body %}
+
+{% block header %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ parent() }}
+    {% endif %}
+
+    {{ include('@EasyAdmin/default/includes/_select2_widget.html.twig') }}
+{% endblock header %}
+
+{% block sidebar %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ parent() }}
+    {% endif %}
+{% endblock sidebar %}

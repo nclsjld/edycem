@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1>Site</h1>
+            </div>
+
+            <ul>
+                {% if posts is defined %}
+                    {% for post in posts %}
+                        <li>
+                            <a href="{{ path('post_show', {'slug': post.slug}) }}">{{ post.name }}</a><br/>
+                            {% if (vich_uploader_asset(post, 'imageFile')) %}
+                                <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('small_thumb') }}" />
+                                {#<img src="{{ vich_uploader_asset(post, 'imageFile') }}" />#}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+
+            <div>
+                <small>Using Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</small>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

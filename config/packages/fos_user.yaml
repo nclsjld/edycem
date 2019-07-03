@@ -1,0 +1,17 @@
+## User management
+fos_user:
+  db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+  firewall_name: main
+  user_class: App\Entity\User
+  service:
+    mailer: fos_user.mailer.twig_swift
+  from_email:
+    address: "%env(MAILER_FROM)%"
+    sender_name: "%env(MAILER_FROM)%"
+  registration:
+    confirmation:
+      enabled: true
+      template:   'emails/user_registration.email.twig'
+  resetting:
+    email:
+      template:   'emails/user_reset_password.email.twig'

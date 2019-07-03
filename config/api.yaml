@@ -1,0 +1,6 @@
+# REQUIRED :
+#   name, showAll, showOne
+api:
+  entities:
+    - { name: Post, showAll: posts, showOne: post }
+    - { name: User, showAll: users, showOne: user }

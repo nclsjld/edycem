@@ -1,0 +1,18 @@
+{% extends '@!EasyAdmin/default/layout.html.twig' %}
+
+{% block user_menu_dropdown %}
+    <li>
+        <a href="{{ path('homepage') }}"><i class="fa fa-share"></i> {{ 'admin.link.site'|trans }}</a>
+    </li>
+    <li>
+        <a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> {{ 'admin.link.profile.edit'|trans }}</a>
+    </li>
+    <li>
+        <a href="{{ _logout_path }}"><i class="fa fa-sign-out"></i> {{ 'user.signout'|trans(domain = 'EasyAdminBundle') }}</a>
+    </li>
+    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <li>
+            <a href="?_switch_user=_exit"><i class="fa fa-sign-out"></i> {{ 'user.exit_impersonation'|trans(domain = 'EasyAdminBundle') }}</a>
+        </li>
+    {% endif %}
+{% endblock user_menu_dropdown %}

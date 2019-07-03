@@ -1,0 +1,23 @@
+easy_admin:
+  site_name: '%env(APP_TITLE)%'
+  design:
+    brand_color: '#279F98'
+    form_theme:
+      - '@EasyAdmin/form/bootstrap_4.html.twig'
+      - '@VichUploader/Form/fields.html.twig'
+    assets:
+      js:
+        - 'build/admin.js'
+      css:
+        - 'build/admin.css'
+  formats:
+    date: 'd/m/Y'
+  list:
+    actions:
+      - { name: 'new', label: title.add, icon: 'add' }
+      - { name: 'edit', label: '', icon: 'edit', css_class: 'btn btn-main-color' }
+      - { name: 'delete', label: '', icon: 'trash', css_class: 'btn btn-danger' }
+  new:
+    title: title.add
+  edit:
+    title: title.edit

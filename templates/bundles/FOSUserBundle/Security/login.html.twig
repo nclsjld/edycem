@@ -1,0 +1,13 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block body_id %}fos_login{% endblock %}
+
+{% block login_logo %}
+    <div class="login-logo">
+        <a href="{{path('homepage')}}"><b>{{ easyadmin_config('site_name')|raw }}</b></a>
+    </div>
+{% endblock %}
+
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}

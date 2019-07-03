@@ -1,48 +1,33 @@
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-
-# Email spool folder
-/app/spool/*
-
-# Cache, session files and logs (Symfony3)
+/.web-server-pid
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
 /var/cache/*
-/var/logs/*
-/var/sessions/*
 !var/cache/.gitkeep
+!/var/logs
+/var/logs/*
 !var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
 !var/sessions/.gitkeep
-
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
-
-# Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
+!var/SymfonyRequirements.php
 /vendor/
 
-# Assets and user uploads
-/web/bundles/
-/web/uploads/
+/.idea/
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
 
-# Build data
-/build/
+/node_modules/
+/public/build/
+/public/uploads/
 
-# Composer PHAR
-/composer.phar
+npm-debug.log
+yarn-error.log
 
-# Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
-
-# Embedded web-server pid file
-/.web-server-pid
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

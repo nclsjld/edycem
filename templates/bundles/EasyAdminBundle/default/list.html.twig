@@ -1,0 +1,86 @@
+{% extends '@!EasyAdmin/default/list.html.twig' %}
+
+
+{% block global_actions %}
+    {% if easyadmin_action_is_enabled_for_list_view('search', _entity_config.name) %}
+        {% set _action = easyadmin_get_action_for_list_view('search', _entity_config.name) %}
+        {% block search_action %}
+            {{ parent() }}
+        {% endblock %}
+    {% endif %}
+
+    {% set currentEntity = _entity_config.name %}
+    {% set currentEntityConfig = easyadmin_config('entities.' ~ currentEntity) %}
+
+    {% if currentEntityConfig.export is defined and currentEntityConfig.export.role is not defined or (currentEntityConfig.export.role is defined and is_granted(currentEntityConfig.export.role)) %}
+        {% set _action = easyadmin_get_action_for_list_view('new', _entity_config.name) %}
+        <div class="button-action">
+            <a class="btn btn-primary" href="{{ path('easyadmin', app.request.query|merge({ action: "export" })) }}">
+                <i class="fa fa-download"></i>
+                {{ 'exporter.export'|trans({}) }}
+            </a>
+        </div>
+    {% endif %}
+
+    {% block new_action %}
+        {% set currentEntity = _entity_config.name %}
+        {% set currentEntityConfig = easyadmin_config('entities.' ~ currentEntity) %}
+
+        {% if currentEntityConfig.new is defined and currentEntityConfig.new.role is defined and (not is_granted(currentEntityConfig.new.role) or 'new' in currentEntityConfig.disabled_actions) %}
+            {# New action not allowed #}
+        {% else %}
+            {% set _action = easyadmin_get_action_for_list_view('new', _entity_config.name) %}
+            {{ parent() }}
+        {% endif %}
+    {% endblock new_action %}
+{% endblock %}
+
+
+{% block table_head %}
+
+    {% set currentEntity = _entity_config.name %}
+    {% set currentEntityConfig = easyadmin_config('entities.' ~ currentEntity) %}
+    {% set allowedActions = [] %}
+
+    {% for action in _list_item_actions %}
+        {% set actionName = action.name %}
+
+        {# config for the current action of the current entity in yml and custom role and not allowed#}
+        {% if currentEntityConfig[actionName] is defined and currentEntityConfig[actionName].role is defined and not is_granted(currentEntityConfig[actionName].role) %}
+            {# Action not allowed #}
+        {% else %}
+            {% set allowedActions = allowedActions|merge({(''~actionName): _list_item_actions[actionName]}) %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% set _list_item_actions = allowedActions %}
+
+    {{ parent() }}
+
+{% endblock table_head %}
+
+
+{% block table_body %}
+
+    {% set currentEntity = _entity_config.name %}
+    {% set currentEntityConfig = easyadmin_config('entities.' ~ currentEntity) %}
+    {% set allowedActions = [] %}
+
+    {% for action in _list_item_actions %}
+        {% set actionName = action.name %}
+
+        {# config for the current action of the current entity in yml and custom role and not allowed#}
+        {% if currentEntityConfig[actionName] is defined and currentEntityConfig[actionName].role is defined and not is_granted(currentEntityConfig[actionName].role) %}
+            {# Action not allowed #}
+        {% else %}
+            {% set allowedActions = allowedActions|merge({(''~actionName): _list_item_actions[actionName]}) %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% set _list_item_actions = allowedActions %}
+
+    {{ parent() }}
+
+{% endblock table_body %}

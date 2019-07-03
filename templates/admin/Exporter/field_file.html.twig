@@ -1,0 +1,3 @@
+{% if value != '' %}
+    {{ app.request.getSchemeAndHttpHost() ~ asset(value) }}
+{% endif %}
