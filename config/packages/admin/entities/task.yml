@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+
+        Task:
+            label: entity.task.label
+            class: App\Entity\Task
+            role: ROLE_ADMIN
+            list:
+                title: entity.task.list
+                fields:
+                    - { property: activity, type: collection, label: entity.user.username }
+                    - { property: name, label: entity.user.username }
+            form:
+                fields:
+                    - { property: name, label: entity.user.username }
