@@ -11,7 +11,10 @@ entity:
     enabled: 'Activé'
     lastlogin: 'Dernière connexion'
     roles: 'Rôles'
-    plainPassword: 'Password'
+    isEligible: 'Est éligible CIR'
+    firstname: 'Prénom'
+    lastname: 'Nom'
+    smartphoneId: 'ID Smartphone'
 
   admin:
     title: 'Admins'

@@ -9,6 +9,7 @@ use App\Exporter\PropertyConfigPass;
 use App\Exporter\TemplateConfigPass;
 use EasyCorp\Bundle\EasyAdminBundle\Search\Paginator;
 use EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController as BaseAdminController;
@@ -26,8 +27,9 @@ class AdminController extends BaseAdminController
     private $normalizerConfigPass;
     private $propertyConfigPass;
     private $templateConfigPass;
+    private $userManager;
 
-    public function __construct(LoggerInterface $logger, RoleHierarchyInterface $roleHierarchy, TranslatorInterface $translator, NormalizerConfigPass $normalizerConfigPass, PropertyConfigPass $propertyConfigPass, TemplateConfigPass $templateConfigPass)
+    public function __construct(LoggerInterface $logger, RoleHierarchyInterface $roleHierarchy, TranslatorInterface $translator, NormalizerConfigPass $normalizerConfigPass, PropertyConfigPass $propertyConfigPass, TemplateConfigPass $templateConfigPass,  UserManagerInterface $userManager)
     {
         $this->logger = $logger;
         $this->roleHierarchy = $roleHierarchy;
@@ -35,6 +37,7 @@ class AdminController extends BaseAdminController
         $this->normalizerConfigPass = $normalizerConfigPass;
         $this->propertyConfigPass = $propertyConfigPass;
         $this->templateConfigPass = $templateConfigPass;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -182,18 +185,19 @@ class AdminController extends BaseAdminController
 
     public function createNewUserEntity()
     {
-        return $this->get('fos_user.user_manager')->createUser();
+        return $this->userManager->createUser();
     }
 
     public function persistUserEntity($user)
     {
-        $this->get('fos_user.user_manager')->updateUser($user, false);
+        $user->setEnabled(true);
+        $this->userManager->updateUser($user, false);
         parent::persistEntity($user);
     }
 
     public function updateUserEntity($user)
     {
-        $this->get('fos_user.user_manager')->updateUser($user, false);
+        $this->userManager->updateUser($user, false);
         parent::updateEntity($user);
     }
 }

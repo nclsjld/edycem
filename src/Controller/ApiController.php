@@ -2,17 +2,57 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Yaml\Yaml;
-
+use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends AbstractController
 {
+
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
+    /**
+     * @Post(
+     *     path = "/api/post/{routeName}",
+     *     name = "entity_post"
+     * )
+     */
+    public function postAction($routeName, Request $request)
+    {
+        if ($request->query->get('token')) {
+            $user = $this->em->getRepository(User::class)
+                ->findOneBy(['apiToken' => $request->query->get('token')]);
+
+            if ($user !== null) {
+                $user = new User();
+                $user->setId($request->get('id'))
+                    ->setUsername($request->get('username'))
+                    ->setEmail($request->get('email'))
+                    ->setEnabled(true);
+
+                $this->em->persist($user);
+                $this->em->flush();
+
+                return new Response($user);
+            } else {
+                return new Response('You have no rights access');
+            }
+        }
+    }
 
     /**
      * @Get(
