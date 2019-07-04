@@ -49,6 +49,11 @@ class Project
     /**
      * @ORM\Column(type="boolean")
      */
+    private $isValidate;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private $asPartOfPulpit;
 
     /**
@@ -147,6 +152,16 @@ class Project
         $this->isEligibleCIR = $isEligibleCIR;
 
         return $this;
+    }
+
+    public function getisValidate()
+    {
+        return $this->isValidate;
+    }
+
+    public function setIsValidate($isValidate)
+    {
+        $this->isValidate = $isValidate;
     }
 
     public function getAsPartOfPulpit(): ?bool
