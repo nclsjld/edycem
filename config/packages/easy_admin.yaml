@@ -1,3 +1,9 @@
 imports:
   # Depuis Symfony 2.8
   - { resource: admin/ }
+
+easy_admin:
+  formats:
+    date:     'd/m/Y'
+    time:     'H:i'
+    datetime: 'd/m/Y'

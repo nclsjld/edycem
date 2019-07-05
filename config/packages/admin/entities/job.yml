@@ -1,0 +1,14 @@
+easy_admin:
+    entities:
+
+        Job:
+            label: entity.job.label
+            class: App\Entity\Job
+            role: ROLE_ADMIN
+            list:
+                title: entity.job.list
+                fields:
+                    - { property: name, label: entity.job.name }
+            form:
+                fields:
+                    - { property: name, label: entity.job.name }

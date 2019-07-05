@@ -21,6 +21,50 @@ entity:
     label: 'un administrateur'
     list: 'Administrateurs'
 
+  task:
+    title : 'Tâches'
+    label: 'une tâche'
+    list: 'Tâches'
+
+  activity:
+    title: 'Activités'
+    label: 'une activité'
+    list: 'Activités'
+
+  job:
+    title: 'Jobs'
+    label: 'un job'
+    list: 'Jobs'
+
+  WorkingTime:
+    title: 'Temps de Travail'
+    label: 'temps de travail'
+    list: 'Temps de travail'
+
+  project:
+    title: 'Projets'
+    label: 'projet'
+    list: 'Projets'
+
+entity.project.name: 'Nom du projet'
+entity.project.description: 'Description du projet'
+entity.project.company: 'Compagnie'
+entity.project.created_at: 'Créé le'
+entity.project.claimantName: 'Client'
+entity.project.relevantSite: 'Site'
+entity.project.isEligibleCIR: 'Eligible CIR?'
+entity.project.asPartOfPulpit: 'Cadre de la chaire'
+entity.project.deadline: 'Deadline'
+entity.project.documents: 'Documents à prévoir'
+entity.project.activityType: "Sous type d'activité"
+entity.project.spentTime: 'Temps passé'
+entity.user.name: 'Nom'
+entity.task.name: 'Tâche'
+entity.job.name: 'Nom du job'
+entity.activity.name: "Nom de l'activité"
+
+
+
 title:
   add: 'Ajouter %entity_label%'
   edit: 'Editer %entity_label%'

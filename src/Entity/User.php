@@ -83,6 +83,11 @@ class User extends BaseUser
     private $job;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $rgpd_validate;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -182,6 +187,23 @@ class User extends BaseUser
     public function setApiToken($apiToken): void
     {
         $this->apiToken = $apiToken;
+    }
+
+    public function __toString()
+    {
+        return strtoupper($this->getLastname()).' '.$this->getFirstname();
+    }
+
+    public function getRgpdValidate(): ?bool
+    {
+        return $this->rgpd_validate;
+    }
+
+    public function setRgpdValidate(bool $rgpd_validate): self
+    {
+        $this->rgpd_validate = $rgpd_validate;
+
+        return $this;
     }
 
 

@@ -20,6 +20,7 @@ easy_admin:
             edit:
                 fields:
                 - '-plainPassword'
+            disabled_actions: ['show']
 
         Admin:
             label: entity.admin.label
@@ -42,3 +43,4 @@ easy_admin:
                     - { property: username, label: entity.user.username }
                     - { property: email, label: entity.user.email }
                     - { property: enabled, label: entity.user.enabled }
+            disabled_actions: ['show']

@@ -1,0 +1,14 @@
+easy_admin:
+    entities:
+
+        Activity:
+            label: entity.activity.label
+            class: App\Entity\Activity
+            role: ROLE_ADMIN
+            list:
+                title: entity.activity.list
+                fields:
+                    - { property: name, label: entity.activity.name }
+            form:
+                fields:
+                    - { property: name, label: entity.activity.name }

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Project
 {
@@ -76,6 +77,17 @@ class Project
      * @ORM\JoinColumn(nullable=false)
      */
     private $job;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -226,6 +238,34 @@ class Project
     public function setJob($job): void
     {
         $this->job = $job;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersistSetCreatedAt()
+    {
+        if(!$this->created_at){
+            $this->created_at = new \DateTime();
+        }
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
 }

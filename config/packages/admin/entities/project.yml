@@ -1,0 +1,24 @@
+easy_admin:
+    entities:
+
+        Project:
+            label: entity.project.label
+            class: App\Entity\Project
+            role: ROLE_ADMIN
+            list:
+                title: entity.project.list
+                fields:
+                    - { property: name,  label: entity.project.name }
+                    - { property: description, label: entity.project.description }
+                    - { property: company, label: entity.project.company }
+                    - { property: created_at, label: entity.project.created_at }
+                    - { property: claimantName, label: entity.project.claimantName }
+                    - { property: relevantSite, label: entity.project.relevantSite }
+                    - { property: isEligibleCIR, type: 'boolean', label: entity.project.isEligibleCIR }
+                    - { property: asPartOfPulpit,  type: 'boolean', label: entity.project.asPartOfPulpit }
+                    - { property: deadline, label: entity.project.deadline }
+                    - { property: documents, label: entity.project.documents }
+                    - { property: activityType, label: entity.project.activityType }
+            form:
+                fields:
+                    - { property: name, label: entity.project.name }

@@ -1,0 +1,22 @@
+easy_admin:
+    entities:
+
+        WorkingTime:
+            label: entity.WorkingTime.label
+            class: App\Entity\WorkingTime
+            role: ROLE_ADMIN
+            new:
+                role: ROLE_SUPER_ADMIN
+            list:
+                title: entity.WorkingTime.list
+                fields:
+                    - { property: user, label: entity.user.name }
+                    - { property: project, label: entity.project.name }
+                    - { property: task.activity, label: entity.task.name }
+                    - { property: date,  label: entity.project.created_at }
+                    - { property: spentTime, label: entity.project.spentTime }
+                    - { property: description, label: entity.project.description }
+            form:
+                fields:
+                    - { property: name, label: entity.WorkingTime.name }
+            disabled_actions: ['new', 'edit']

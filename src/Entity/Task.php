@@ -60,4 +60,9 @@ class Task
         $this->activity = $activity;
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }

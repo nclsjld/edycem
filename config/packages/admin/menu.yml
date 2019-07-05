@@ -12,6 +12,26 @@ easy_admin:
         icon: 'dashboard'
         entity: 'Task'
 
+      - label: 'Activites'
+        role: ROLE_USER
+        icon: 'dashboard'
+        entity: 'Activity'
+
+      - label: 'Jobs'
+        role: ROLE_USER
+        icon: 'dashboard'
+        entity: 'Job'
+
+      - label: 'Temps de travail'
+        role: ROLE_USER
+        icon: 'dashboard'
+        entity: 'WorkingTime'
+
+      - label: 'Projets'
+        role: ROLE_USER
+        icon: 'dashboard'
+        entity: 'Project'
+
       - label: 'Utilisateurs'
         role: ROLE_ADMIN
         icon: 'users'

@@ -8,8 +8,8 @@ easy_admin:
             list:
                 title: entity.task.list
                 fields:
-                    - { property: activity, type: collection, label: entity.user.username }
-                    - { property: name, label: entity.user.username }
+                    - { property: activity.name, label: entity.activity.name }
+                    - { property: name, label: entity.task.name }
             form:
                 fields:
-                    - { property: name, label: entity.user.username }
+                    - { property: name, label: entity.task.name }
