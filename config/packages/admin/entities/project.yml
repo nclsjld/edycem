@@ -12,13 +12,10 @@ easy_admin:
                     - { property: description, label: entity.project.description }
                     - { property: company, label: entity.project.company }
                     - { property: created_at, label: entity.project.created_at }
-                    - { property: claimantName, label: entity.project.claimantName }
                     - { property: relevantSite, label: entity.project.relevantSite }
-                    - { property: isEligibleCIR, type: 'boolean', label: entity.project.isEligibleCIR }
                     - { property: asPartOfPulpit,  type: 'boolean', label: entity.project.asPartOfPulpit }
                     - { property: deadline, label: entity.project.deadline }
-                    - { property: documents, label: entity.project.documents }
-                    - { property: activityType, label: entity.project.activityType }
+
             form:
                 fields:
                     - { property: name, label: entity.project.name }
@@ -28,9 +25,9 @@ easy_admin:
                     - { property: claimantName, label: entity.project.claimantName }
                     - { property: job, label: entity.project.job }
                     - { property: relevantSite, label: entity.project.relevantSite }
-                    - { property: isEligibleCIR, label: entity.project.isEligibleCIR }
                     - { property: asPartOfPulpit, label: entity.project.asPartOfPulpit }
                     - { property: isValidate, label: entity.project.isValidate }
                     - { property: deadline, label: entity.project.deadline }
                     - { property: documents, label: entity.project.documents }
                     - { property: activityType, label: entity.project.activityType }
+            disabled_actions: ['delete']

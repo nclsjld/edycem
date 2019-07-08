@@ -28,9 +28,9 @@ class Task
     private $activity;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="integer")
      */
-    private $defaultTime = '00:00:00';
+    private $defaultTime = 0;
 
     public function getId(): ?int
     {
@@ -65,12 +65,12 @@ class Task
         $this->activity = $activity;
     }
 
-    public function getDefaultTime(): ?\DateTimeInterface
+    public function getDefaultTime(): ?int
     {
         return $this->defaultTime;
     }
 
-    public function setDefaultTime(\DateTimeInterface $defaultTime): self
+    public function setDefaultTime(int $defaultTime): self
     {
         $this->defaultTime = $defaultTime;
 

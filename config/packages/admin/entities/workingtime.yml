@@ -19,7 +19,7 @@ easy_admin:
             form:
                 fields:
                     - { property: name, label: entity.WorkingTime.name }
-            disabled_actions: ['new', 'edit']
+            disabled_actions: ['new', 'edit', 'delete']
 
             export:
                 fields:

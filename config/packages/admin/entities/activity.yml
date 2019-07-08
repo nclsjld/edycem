@@ -12,3 +12,5 @@ easy_admin:
             form:
                 fields:
                     - { property: name, label: entity.activity.name }
+
+            disabled_actions: ['delete']

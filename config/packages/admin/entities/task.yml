@@ -16,3 +16,5 @@ easy_admin:
                     - { property: activity, label: entity.activity.name }
                     - { property: name, label: entity.task.name }
                     - { property: defaultTime, label: entity.task.defaultTime }
+
+            disabled_actions: ['delete']
