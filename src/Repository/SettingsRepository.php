@@ -19,32 +19,14 @@ class SettingsRepository extends ServiceEntityRepository
         parent::__construct($registry, Settings::class);
     }
 
-    // /**
-    //  * @return Settings[] Returns an array of Settings objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllWithFields($fields = 'settings', $where = '1 = 1')
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->_em->createQueryBuilder()
+            ->select($fields)
+            ->from($this::getEntityName(), 'settings')
+            ->where($where)
             ->getQuery()
-            ->getResult()
-        ;
+            ->setMaxResults(1)
+            ->getSingleResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Settings
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

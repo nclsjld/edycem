@@ -10,6 +10,8 @@ easy_admin:
                 dql_filter: "entity.roles NOT LIKE '%%ROLE_ADMIN%%' AND entity.roles NOT LIKE '%%ROLE_SUPER_ADMIN%%'"
                 fields:
                     - { property: email, label: entity.user.email }
+                    - { property: lastname, label: entity.user.lastname }
+                    - { property: firstname, label: entity.user.firstname }
                     - { property: job, label: entity.job.name }
             form:
                 fields:

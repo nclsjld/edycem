@@ -19,32 +19,12 @@ class WorkingTimeRepository extends ServiceEntityRepository
         parent::__construct($registry, WorkingTime::class);
     }
 
-    // /**
-    //  * @return WorkingTime[] Returns an array of WorkingTime objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllWithFields($fields = 'working_time')
     {
-        return $this->createQueryBuilder('w')
-            ->andWhere('w.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('w.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->_em->createQueryBuilder()
+            ->select($fields)
+            ->from($this::getEntityName(), 'working_time')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?WorkingTime
-    {
-        return $this->createQueryBuilder('w')
-            ->andWhere('w.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
