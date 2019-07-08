@@ -85,7 +85,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="boolean")
      */
-    private $rgpd_validate;
+    private $rgpd_validate = 0;
 
     /**
      * @return mixed

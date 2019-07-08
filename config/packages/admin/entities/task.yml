@@ -10,6 +10,9 @@ easy_admin:
                 fields:
                     - { property: activity.name, label: entity.activity.name }
                     - { property: name, label: entity.task.name }
+                    - { property: defaultTime, label: entity.task.defaultTime }
             form:
                 fields:
+                    - { property: activity, label: entity.activity.name }
                     - { property: name, label: entity.task.name }
+                    - { property: defaultTime, label: entity.task.defaultTime }

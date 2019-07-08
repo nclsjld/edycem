@@ -58,10 +58,18 @@ entity.project.deadline: 'Deadline'
 entity.project.documents: 'Documents à prévoir'
 entity.project.activityType: "Sous type d'activité"
 entity.project.spentTime: 'Temps passé'
+entity.project.isValidate : 'Projet Validé'
+entity.project.job: 'Job'
 entity.user.name: 'Nom'
 entity.task.name: 'Tâche'
+entity.task.defaultTime: 'Temps par défaut'
 entity.job.name: 'Nom du job'
 entity.activity.name: "Nom de l'activité"
+entity.user.rgpdValidate: 'A validé la RGPD'
+entity.user.smartphoneId: 'Identifiant'
+entity.workingtime.date: 'Date'
+entity.workingtime.description: 'Descriptif'
+entity.workingtime.spentTime: 'Tps passé (h)'
 
 
 

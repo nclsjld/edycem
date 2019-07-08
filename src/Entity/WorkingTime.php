@@ -74,7 +74,6 @@ class WorkingTime
     public function setSpentTime(int $spentTime): self
     {
         $this->spentTime = $spentTime;
-
         return $this;
     }
 
