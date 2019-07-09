@@ -7,10 +7,26 @@ easy_admin:
             role: ROLE_ADMIN
             list:
                 title: entity.job.list
+                dql_filter: "entity.isValidate = 1"
                 fields:
                     - { property: name, label: entity.job.name }
             form:
                 fields:
                     - { property: name, label: entity.job.name }
-
             disabled_actions: ['delete']
+
+        NotValidateJob:
+            label: entity.job.label
+            class: App\Entity\Job
+            new:
+                role: ROLE_SUPER_ADMIN
+            role: ROLE_ADMIN
+            list:
+                title: entity.job.list
+                dql_filter: "entity.isValidate = 0"
+                fields:
+                    - { property: name, label: entity.job.name }
+            form:
+                fields:
+                    - { property: name, label: entity.job.name }
+            disabled_actions: ['delete', 'new']

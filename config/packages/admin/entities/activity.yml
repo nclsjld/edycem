@@ -7,6 +7,7 @@ easy_admin:
             role: ROLE_ADMIN
             list:
                 title: entity.activity.list
+                dql_filter: "entity.isValidate = 1"
                 fields:
                     - { property: name, label: entity.activity.name }
             form:
@@ -14,3 +15,20 @@ easy_admin:
                     - { property: name, label: entity.activity.name }
 
             disabled_actions: ['delete']
+
+        NotValidateActivity:
+            label: entity.activityno.label
+            class: App\Entity\Activity
+            new:
+                role: ROLE_SUPER_ADMIN
+            role: ROLE_ADMIN
+            list:
+                title: entity.activity.list
+                dql_filter: "entity.isValidate = 0"
+                fields:
+                    - { property: name, label: entity.activity.name }
+            form:
+                fields:
+                    - { property: name, label: entity.activity.name }
+
+            disabled_actions: ['delete', 'new']

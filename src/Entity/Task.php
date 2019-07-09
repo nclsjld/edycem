@@ -32,6 +32,11 @@ class Task
      */
     private $defaultTime = 0;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isValidate = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,6 +85,18 @@ class Task
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getIsValidate(): ?bool
+    {
+        return $this->isValidate;
+    }
+
+    public function setIsValidate(bool $isValidate): self
+    {
+        $this->isValidate = $isValidate;
+
+        return $this;
     }
 
 }

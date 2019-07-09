@@ -10,27 +10,47 @@ easy_admin:
       - label: 'Taches'
         role: ROLE_USER
         icon: 'dashboard'
-        entity: 'Task'
+        children:
+          - label: entity.task.title
+            entity: 'Task'
+          - label: entity.taskno.title
+            entity: 'NotValidateTask'
 
-      - label: 'Activites'
+      - label: 'Activités'
         role: ROLE_USER
         icon: 'dashboard'
-        entity: 'Activity'
+        children:
+          - label: entity.activity.title
+            entity: 'Activity'
+          - label: entity.activityno.title
+            entity: 'NotValidateActivity'
 
-      - label: 'Jobs'
+      - label: 'Métiers'
         role: ROLE_USER
         icon: 'dashboard'
-        entity: 'Job'
+        children:
+          - label: entity.job.title
+            entity: 'Job'
+          - label: entity.jobno.title
+            entity: 'NotValidateJob'
 
       - label: 'Temps de travail'
         role: ROLE_USER
         icon: 'dashboard'
-        entity: 'WorkingTime'
+        children:
+          - label: entity.workingtime.title
+            entity: 'WorkingTime'
+          - label: entity.workingtimeno.title
+            entity: 'NotValidateWorkingTime'
 
       - label: 'Projets'
         role: ROLE_USER
         icon: 'dashboard'
-        entity: 'Project'
+        children:
+          - label: entity.project.title
+            entity: 'Project'
+          - label: entity.projectno.title
+            entity: 'NotValidateProject'
 
       - label: 'Utilisateurs'
         role: ROLE_ADMIN

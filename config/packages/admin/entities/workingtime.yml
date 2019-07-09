@@ -32,3 +32,35 @@ easy_admin:
                     - { property: date, label: entity.workingtime.date }
                     - { property: spentTime, type: 'minutes', label: entity.workingtime.spentTime }
                     - { property: description, label: entity.workingtime.description }
+
+        NotValidateWorkingTime:
+            label: entity.WorkingTime.label
+            class: App\Entity\WorkingTime
+            role: ROLE_ADMIN
+            new:
+                role: ROLE_SUPER_ADMIN
+            list:
+                title: entity.WorkingTime.list
+                fields:
+                    - { property: user, label: entity.user.name }
+                    - { property: project, label: entity.project.name }
+                    - { property: task.activity, label: entity.task.name }
+                    - { property: date,  label: entity.project.created_at }
+                    - { property: spentTime, label: entity.project.spentTime }
+                    - { property: description, label: entity.project.description }
+            form:
+                fields:
+                    - { property: name, label: entity.WorkingTime.name }
+            disabled_actions: ['new', 'edit', 'delete']
+
+            export:
+                fields:
+                    - { property: user.smartphoneId, label: entity.user.smartphoneId }
+                    - { property: user.job, label: entity.job.name }
+                    - { property: project, label: entity.project.name }
+                    - { property: project.description, label: entity.project.description}
+                    - { property: task.activity, label: entity.activity.name }
+                    - { property: task.name, label: entity.task.name }
+                    - { property: date, label: entity.workingtime.date }
+                    - { property: spentTime, type: 'minutes', label: entity.workingtime.spentTime }
+                    - { property: description, label: entity.workingtime.description }

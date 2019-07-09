@@ -32,9 +32,9 @@ entity:
     list: 'Activités'
 
   job:
-    title: 'Jobs'
-    label: 'un job'
-    list: 'Jobs'
+    title: 'Métiers'
+    label: 'un métier'
+    list: 'Métiers'
 
   WorkingTime:
     title: 'Temps de Travail'
@@ -60,13 +60,24 @@ entity.project.activityType: "Sous type d'activité"
 entity.project.spentTime: 'Temps passé'
 entity.project.isValidate : 'Projet Validé'
 entity.project.job: 'Job'
-entity.user.name: 'Nom'
+entity.projectno.title: 'Archivés'
 entity.task.name: 'Tâche'
 entity.task.defaultTime: 'Temps par défaut'
-entity.job.name: 'Nom du job'
+entity.taskno.title: 'Archivées'
+entity.taskno.list: 'Tâches archivées'
+entity.taskno.label: 'la tâche'
+entity.jobno.title: 'Archivés'
+entity.job.name: 'Nom du métier'
+entity.activity.title: 'Activitées validées'
 entity.activity.name: "Nom de l'activité"
+entity.activityno.title: 'Archivées'
+entity.activityno.label: "l'activitée"
+entity.activity.isValidate: 'Est validée'
+entity.user.name: 'Nom'
 entity.user.rgpdValidate: 'A validé la RGPD'
 entity.user.smartphoneId: 'Identifiant'
+entity.workingtime.title: 'Temps de Travail'
+entity.workingtimeno.title: 'Archivés'
 entity.workingtime.date: 'Date'
 entity.workingtime.description: 'Descriptif'
 entity.workingtime.spentTime: 'Tps passé (h)'
