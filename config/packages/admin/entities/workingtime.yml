@@ -9,6 +9,7 @@ easy_admin:
                 role: ROLE_SUPER_ADMIN
             list:
                 title: entity.WorkingTime.list
+                dql_filter: "entity.isValidate = 1"
                 fields:
                     - { property: user, label: entity.user.name }
                     - { property: project, label: entity.project.name }
@@ -41,6 +42,7 @@ easy_admin:
                 role: ROLE_SUPER_ADMIN
             list:
                 title: entity.WorkingTime.list
+                dql_filter: "entity.isValidate = 0"
                 fields:
                     - { property: user, label: entity.user.name }
                     - { property: project, label: entity.project.name }
