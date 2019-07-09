@@ -43,11 +43,6 @@ class Job
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     public function getIsValidate(): ?bool
     {
         return $this->isValidate;
@@ -58,5 +53,16 @@ class Job
         $this->isValidate = $isValidate;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function toJSON()
+    {
+        $vars = get_object_vars($this);
+        return $vars;
     }
 }

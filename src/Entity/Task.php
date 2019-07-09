@@ -82,11 +82,6 @@ class Task
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
     public function getIsValidate(): ?bool
     {
         return $this->isValidate;
@@ -97,6 +92,17 @@ class Task
         $this->isValidate = $isValidate;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function toJSON()
+    {
+        $vars = get_object_vars($this);
+        return $vars;
     }
 
 }

@@ -45,7 +45,7 @@ class UserRepository extends ServiceEntityRepository
         return $this->_em->createQueryBuilder()
             ->select($fields)
             ->from($this::getEntityName(), 'user')
-            ->leftJoin('user.job', 'job')
+            ->from('App\Entity\Job', 'j')
             ->where($where)
             ->getQuery()
             ->getResult();

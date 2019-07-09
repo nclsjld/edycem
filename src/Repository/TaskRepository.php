@@ -24,7 +24,7 @@ class TaskRepository extends ServiceEntityRepository
         return $this->_em->createQueryBuilder()
             ->select($fields)
             ->from($this::getEntityName(), 'task')
-            ->leftJoin('task.activity', 'activity')
+            ->from('App\Entity\Activity', 'a')
             ->where($where)
             ->getQuery()
             ->getResult();

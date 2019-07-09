@@ -22,8 +22,9 @@ class ProjectRepository extends ServiceEntityRepository
     public function findAllWithFields($fields = 'project', $where = '1 = 1')
     {
         return $this->_em->createQueryBuilder()
-            ->select('project')
+            ->select($fields)
             ->from($this::getEntityName(), 'project')
+            ->from('App\Entity\Job', 'j')
             ->where($where)
             ->getQuery()
             ->getResult();

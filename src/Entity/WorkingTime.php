@@ -154,4 +154,19 @@ class WorkingTime
         return $this;
     }
 
+    public function toJSON()
+    {
+        $vars = get_object_vars($this);
+        $vars['user'] = $vars['user']->toJSON();
+        $vars['project'] = $vars['project']->toJSON();
+        $vars['task'] = $vars['task']->toJSON();
+        $vars['date'] = get_object_vars($vars['date']);
+
+        echo "<pre>";
+        var_dump($vars);
+        echo "</pre>";
+        die();
+        return $vars;
+    }
+
 }

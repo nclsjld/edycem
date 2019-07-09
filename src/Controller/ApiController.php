@@ -18,6 +18,7 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,15 +47,33 @@ class ApiController extends AbstractController
                 $apiConfig = $this->getApiConfig($routeName, 'showOne');
                 $entityPath = "App\\Entity\\" . $apiConfig['name'];
                 $object = new $entityPath();
-                $object->setId($request->get('id'))
-                    ->setUsername($request->get('username'))
-                    ->setEmail($request->get('email'))
-                    ->setEnabled(true);
 
-                $this->em->persist($object);
-                $this->em->flush();
+                // Insert new Working Time
+                if ($apiConfig['name'] === 'WorkingTime') {
+                    $object = new WorkingTime();
+                    $object->setUser(isset($_POST['user_id']) ? $this->getDoctrine()->getRepository('App\Entity\User')->findOneBy(['id' => $_POST['user_id']]) : '');
+                    $object->setProject(isset($_POST['project_id']) ? $this->getDoctrine()->getRepository('App\Entity\Project')->findOneBy(['id' => $_POST['project_id']]) : '');
+                    $object->setTask(isset($_POST['task_id'])? $this->getDoctrine()->getRepository('App\Entity\Task')->findOneBy(['id' => $_POST['task_id']]) : '');
+                    $object->setDate(new \DateTime(isset($_POST['date'])? $_POST['date'] : ''));
+                    $object->setSpentTime(isset($_POST['spent_time'])? $_POST['spent_time'] : '');
+                    $object->setDescription(isset($_POST['description']) ? $_POST['description']:'');
 
-                return new Response($object);
+                    $this->em->persist($object);
+                    $this->em->flush();
+                }
+
+                // Update User RGPD
+                if ($apiConfig['name'] === 'User') {
+                    $user = $this->getDoctrine()->getRepository('App\Entity\User')->findOneBy(['id' => $_POST['id']]);
+                    $object = clone $user;
+
+                    if (isset($_POST['date_rgpd'])) { $object->setDateRgpd(new \DateTime($_POST['date_rgpd']));};
+
+                    $this->em->merge($object);
+                    $this->em->flush();
+                }
+
+                return new JsonResponse($object->toJSON());
             } else {
                 return new JsonResponse('Token d\'accès à l\'API invalide');
             }
@@ -66,11 +85,11 @@ class ApiController extends AbstractController
     /**
      * @Get(
      *     path = "/api/{routeName}",
-     *     name = "entity_show",
+     *     name = "entity_get",
      * )
      * @View()
      */
-    public function showAction($routeName, Request $request)
+    public function getAction($routeName, Request $request)
     {
         // S'il y a un paramètre à la requête
         if (sizeof($request->query) > 0 && $request->query->get('email') !== null) {

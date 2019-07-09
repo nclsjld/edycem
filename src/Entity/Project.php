@@ -275,4 +275,12 @@ class Project
         return $this->getName();
     }
 
+    public function toJSON()
+    {
+        $vars = get_object_vars($this);
+        $vars['job'] = $vars['job']->toJSON();
+        $vars['deadline'] = get_object_vars($vars['deadline']);
+        return $vars;
+    }
+
 }

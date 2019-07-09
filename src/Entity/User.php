@@ -83,9 +83,15 @@ class User extends BaseUser
     private $job;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Establishment")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $rgpd_validate = 0;
+    private $establishment;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_rgpd = 0;
 
     /**
      * @return mixed
@@ -176,6 +182,22 @@ class User extends BaseUser
     /**
      * @return mixed
      */
+    public function getEstablishment()
+    {
+        return $this->establishment;
+    }
+
+    /**
+     * @param mixed $establishment
+     */
+    public function setEstablishment($establishment)
+    {
+        $this->establishment = $establishment;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getApiToken()
     {
         return $this->apiToken;
@@ -189,22 +211,34 @@ class User extends BaseUser
         $this->apiToken = $apiToken;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDateRgpd()
+    {
+        return $this->date_rgpd;
+    }
+
+    /**
+     * @param mixed $date_rgpd
+     */
+    public function setDateRgpd($date_rgpd)
+    {
+        $this->date_rgpd = $date_rgpd;
+    }
+
     public function __toString()
     {
         return strtoupper($this->getLastname()).' '.$this->getFirstname();
     }
 
-    public function getRgpdValidate(): ?bool
+    public function toJSON()
     {
-        return $this->rgpd_validate;
+        $vars = get_object_vars($this);
+        $vars['job'] = $vars['job']->toJSON();
+        $vars['date_rgpd'] = get_object_vars($vars['date_rgpd']);
+
+        return $vars;
     }
-
-    public function setRgpdValidate(bool $rgpd_validate): self
-    {
-        $this->rgpd_validate = $rgpd_validate;
-
-        return $this;
-    }
-
 
 }

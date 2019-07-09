@@ -9,10 +9,10 @@
 
 api:
   entities:
-    - { name: User, showAll: user, showAllFields: [user.id, user.firstname, user.lastname, user.email, user.isEligible, job.id as job_id], showAllCondition: 'user.rgpd_validate = 1', showOne: user, showOneBy: '' }
+    - { name: User, showAll: user, showOne: user }
     - { name: Activity, showAll: activity, showOne: activity }
     - { name: Job, showAll: job, showOne: job }
-    - { name: Project, showAll: project, showAllFields: [project.id, project.name, job.id as job_id, job.name as job_name], showAllCondition: 'project.isValidate = 1 and project.isEligibleCIR = 1', showOne: project }
-    - { name: Task, showAll: task, showAllFields: [task.id, task.name, activity.id as activity_id, activity.name as activity_name], showOne: task }
+    - { name: Project, showAll: project, showAllCondition: 'project.isValidate = 1 and project.isEligibleCIR = 1', showOne: project }
+    - { name: Task, showAll: task, showOne: task }
     - { name: Settings, showAll: setting, showOne: settings }
     - { name: WorkingTime, showAll: working_time, showOne: working_time }

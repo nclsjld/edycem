@@ -5,10 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository") @ORM\EntityListeners({"ProjectListener"})
- * @ORM\HasLifecycleCallbacks
- */
 class ProjectListener
 {
     /**
