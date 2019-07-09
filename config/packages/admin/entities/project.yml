@@ -14,7 +14,7 @@ easy_admin:
                     - { property: company, label: entity.project.company }
                     - { property: created_at, label: entity.project.created_at }
                     - { property: relevantSite, label: entity.project.relevantSite }
-                    - { property: asPartOfPulpit,  type: 'boolean', label: entity.project.asPartOfPulpit }
+                    - { property: asPartOfPulpit, type: 'boolean', label: entity.project.asPartOfPulpit }
                     - { property: deadline, label: entity.project.deadline }
 
             form:
@@ -22,7 +22,6 @@ easy_admin:
                     - { property: name, label: entity.project.name }
                     - { property: description, label: entity.project.description }
                     - { property: company, label: entity.project.company }
-                    - { property: created_at, label: entity.project.created_at }
                     - { property: claimantName, label: entity.project.claimantName }
                     - { property: job, label: entity.project.job }
                     - { property: relevantSite, label: entity.project.relevantSite }

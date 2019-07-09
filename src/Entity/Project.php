@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository") @ORM\EntityListeners({"ProjectListener"})
  * @ORM\HasLifecycleCallbacks
  */
 class Project
@@ -83,90 +84,96 @@ class Project
      */
     private $created_at;
 
-
     public function __construct()
     {
         $this->created_at = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName($name)
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription($description)
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getCompany(): ?string
+    public function getCompany()
     {
         return $this->company;
     }
 
-    public function setCompany(string $company): self
+    public function setCompany($company)
     {
         $this->company = $company;
 
         return $this;
     }
 
-    public function getClaimantName(): ?string
+    public function getClaimantName()
     {
         return $this->claimantName;
     }
 
-    public function setClaimantName(string $claimantName): self
+    public function setClaimantName($claimantName)
     {
         $this->claimantName = $claimantName;
 
         return $this;
     }
 
-    public function getRelevantSite(): ?string
+    public function getRelevantSite()
     {
         return $this->relevantSite;
     }
 
-    public function setRelevantSite(string $relevantSite): self
+    public function setRelevantSite($relevantSite)
     {
         $this->relevantSite = $relevantSite;
 
         return $this;
     }
 
-    public function getIsEligibleCIR(): ?bool
+    public function getIsEligibleCIR()
     {
         return $this->isEligibleCIR;
     }
 
-    public function setIsEligibleCIR(bool $isEligibleCIR): self
+    public function setIsEligibleCIR($isEligibleCIR)
     {
         $this->isEligibleCIR = $isEligibleCIR;
 
         return $this;
     }
 
-    public function getisValidate()
+    public function getIsValidate()
     {
         return $this->isValidate;
     }
@@ -176,48 +183,48 @@ class Project
         $this->isValidate = $isValidate;
     }
 
-    public function getAsPartOfPulpit(): ?bool
+    public function getAsPartOfPulpit()
     {
         return $this->asPartOfPulpit;
     }
 
-    public function setAsPartOfPulpit(bool $asPartOfPulpit): self
+    public function setAsPartOfPulpit($asPartOfPulpit)
     {
         $this->asPartOfPulpit = $asPartOfPulpit;
 
         return $this;
     }
 
-    public function getDeadline(): ?\DateTimeInterface
+    public function getDeadline()
     {
         return $this->deadline;
     }
 
-    public function setDeadline(\DateTimeInterface $deadline): self
+    public function setDeadline($deadline)
     {
         $this->deadline = $deadline;
 
         return $this;
     }
 
-    public function getDocuments(): ?string
+    public function getDocuments()
     {
         return $this->documents;
     }
 
-    public function setDocuments(string $documents): self
+    public function setDocuments($documents)
     {
         $this->documents = $documents;
 
         return $this;
     }
 
-    public function getActivityType(): ?string
+    public function getActivityType()
     {
         return $this->activityType;
     }
 
-    public function setActivityType(string $activityType): self
+    public function setActivityType($activityType)
     {
         $this->activityType = $activityType;
 
@@ -235,17 +242,17 @@ class Project
     /**
      * @param mixed $job
      */
-    public function setJob($job): void
+    public function setJob($job)
     {
         $this->job = $job;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
 

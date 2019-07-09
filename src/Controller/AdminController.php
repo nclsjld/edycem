@@ -200,11 +200,4 @@ class AdminController extends BaseAdminController
         $this->userManager->updateUser($user, false);
         parent::updateEntity($user);
     }
-
-    public function updateProjectEntity($project)
-    {
-        var_dump($project);
-        $this->userManager->updateProject($project, false);
-        parent::updateEntity($project);
-    }
 }
